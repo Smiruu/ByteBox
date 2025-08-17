@@ -5,6 +5,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import RegisterScreen from './screens/RegisterScreen'
 import Login from './components/Login'
+import HomeScreen from './screens/HomeScreen'
+import TestingScreen from './screens/testingScreen'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +17,9 @@ function App() {
        <Routes>
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/login' element={<Login />} />
-          
+
+          <Route path='/' element={<HomeScreen />} />
+          <Route path='/testing' element={<TestingScreen />} />
         </Routes>
     </Router>
     </>

@@ -17,7 +17,7 @@ function App() {
        <Routes>
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='/login' element={<Login />} />
-
+          Testing
           <Route path='/' element={<HomeScreen />} />
           <Route path='/testing' element={<TestingScreen />} />
         </Routes>

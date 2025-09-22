@@ -5,7 +5,7 @@ import viteLogo from '/vite.svg'
 import './index.css'
 import RegisterScreen from './screens/RegisterScreen'
 import Login from './components/Login'
-import HomeScreen from './screens/HomeScreen'
+import HomeScreen from './screens/Dashboard'
 import TestingScreen from './screens/testingScreen'
 
 function App() {

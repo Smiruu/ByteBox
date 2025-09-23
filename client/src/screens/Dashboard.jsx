@@ -1,7 +1,7 @@
 import React from "react";
 import { Clock } from "lucide-react";
 
-import StatusCard from "../components/dashboard/StatusCards.jsx";
+import RecipeCard from "../components/dashboard/RecipeCards.jsx";
 import SensorGrid from "../components/dashboard/SensorGrid.jsx";
 import Navbar from "../components/dashboard/Navbar.jsx";
 
@@ -25,30 +25,58 @@ export default function Dashboard() {
               Last updated: 10:47:46 PM
             </div>
           </div>
-          <div className="m-6 grid gap-4 grid lg:grid-cols-4 sm:grid-cols-2">
-            <StatusCard
-              title="Overall Status"
-              value="4"
-              description="Total Sensors"
-              type="warning"
+          <div className="m-6 justify-center grid gap-4 grid lg:grid-cols-3 sm:grid-cols-1">
+            <RecipeCard
+              priority="Medium Priority"
+              title="Fresh Garden Salad"
+              description="Use leafy greens and vegetables at peak freshness"
+              time="10 mins"
+              servings="4 servings"
+              difficulty="Easy"
+              whyNow="Best to consume vegetables soon"
+              ingredients={[
+                "Mixed greens",
+                "Tomatoes",
+                "Cucumbers",
+                "Carrots",
+                "Olives",
+              ]}
+              onViewRecipe={() => alert("Viewing recipe!")}
             />
-            <StatusCard
-              title="Safe"
-              value="3"
-              description="Within safe limits"
-              type="safe"
+            <RecipeCard
+              priority="Medium Priority"
+              title="Fresh Garden Salad"
+              description="Use leafy greens and vegetables at peak freshness"
+              time="10 mins"
+              servings="4 servings"
+              difficulty="Easy"
+              whyNow="Best to consume vegetables soon"
+              ingredients={[
+                "Mixed greens",
+                "Tomatoes",
+                "Cucumbers",
+                "Carrots",
+                "Olives",
+              ]}
+              onViewRecipe={() => alert("Viewing recipe!")}
             />
-            <StatusCard
-              title="Warning"
-              value="1"
-              description="Above safe levels"
-              type="warning"
-            />
-            <StatusCard
-              title="Critical"
-              value="0"
-              description="Dangerous levels"
-              type="critical"
+            <RecipeCard
+              image="https://images.unsplash.com/photo-1551218808-94e220e084d2"
+              priority="Medium Priority"
+              title="Fresh Garden Salad"
+              description="Use leafy greens and vegetables at peak freshness"
+              time="10 mins"
+              servings="4 servings"
+              difficulty="Easy"
+              whyNow="Best to consume vegetables soon"
+              ingredients={[
+                "Mixed greens",
+                "Tomatoes",
+                "Cucumbers",
+                "Carrots",
+                "Olives",
+              ]}
+              onViewRecipe={() => alert("Viewing recipe!")}
             />
           </div>
           <div className="m-6">

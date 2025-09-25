@@ -1,7 +1,7 @@
 import { useSensors } from "../../hooks/useSensors.jsx";
 import SensorCard from "./SensorCards.jsx";
 
-export default function SensorsGrid() {
+const SensorsGrid = () => {
   const { sensors, loading, error } = useSensors();
 
   if (loading) return <p>Loading sensors...</p>;
@@ -14,4 +14,6 @@ export default function SensorsGrid() {
       ))}
     </div>
   );
-}
+};
+
+export default SensorsGrid;

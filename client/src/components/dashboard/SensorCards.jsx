@@ -1,6 +1,6 @@
 import { LineChart, Line, ResponsiveContainer } from "recharts";
 
-export default function SensorCard({
+const SensorCard = ({
   name,
   formula,
   value,
@@ -9,8 +9,8 @@ export default function SensorCard({
   safeLevel,
   warningLevel,
   icon,
-  history = [], 
-}) {
+  history = [],
+}) => {
   const statusColors = {
     Safe: "bg-green-100 text-green-700",
     Warning: "bg-yellow-100 text-yellow-700",
@@ -18,8 +18,8 @@ export default function SensorCard({
   };
 
   const lineColors = {
-    Safe: "#22c55e", 
-    Warning: "#eab308", 
+    Safe: "#22c55e",
+    Warning: "#eab308",
     Critical: "#ef4444",
   };
 
@@ -74,4 +74,6 @@ export default function SensorCard({
       </div>
     </div>
   );
-}
+};
+
+export default SensorCard;

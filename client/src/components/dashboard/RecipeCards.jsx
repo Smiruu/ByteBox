@@ -1,8 +1,6 @@
 import { Clock, Users } from "lucide-react";
 
-export default function RecipeCard({
-  image,
-  priority = "Medium Priority",
+const RecipeCard = ({
   title,
   description,
   time,
@@ -11,9 +9,9 @@ export default function RecipeCard({
   whyNow,
   ingredients = [],
   onViewRecipe,
-}) {
+}) => {
   return (
-    <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white border">
+    <div className="max-w-md rounded-2xl overflow-hidden shadow-lg bg-white border">
       {/* Content Section */}
       <div className="p-4 space-y-3">
         <div>
@@ -66,4 +64,6 @@ export default function RecipeCard({
       </div>
     </div>
   );
-}
+};
+
+export default RecipeCard;

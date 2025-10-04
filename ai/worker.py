@@ -46,13 +46,14 @@ def predict_with_models(data: dict):
     xgb_pred = float(xgb_model.predict(X)[0])
     rf_pred = float(rf_model.predict(X)[0])
 
-    # average prediction (optional)
-    avg_pred = round((xgb_pred + rf_pred) / 2, 4)
+    # Weighted average ensemble: XGBoost gets 70%, RF 30%
+    weighted_pred = round((0.7 * xgb_pred) + (0.3 * rf_pred), 4)
 
     return {
         "xgb_prediction": xgb_pred,
         "rf_prediction": rf_pred,
-        "average_prediction": avg_pred
+        "average_prediction": round((xgb_pred + rf_pred) / 2, 4),  # simple avg
+        "weighted_prediction": weighted_pred
     }
 
 

@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
-
+import { usePrediction } from "../hooks/usePrediction.jsx";
 import RecipeCards from "../components/dashboard/RecipeCards.jsx";
-import SensorGrid from "../components/dashboard/SensorGrid.jsx";
 import NutritionFacts from "../components/dashboard/NutritionFacts.jsx";
+import PredictionDisplay from "../components/dashboard/PredictionDisplay.jsx";
 
 export default function Dashboard() {
-  const [foodInput, setFoodInput] = useState("");
-  const [foodName, setFoodName] = useState("");
+  const data = usePrediction(); // live sensor & predictions
+  const [foodName, setFoodName] = useState(null);
 
-  const handleAnalyze = () => {
-    if (!foodInput.trim()) return;
-    setFoodName(foodInput.trim());
-  };
+  useEffect(() => {
+    if (!foodName && data && data.food_name) {
+      // Capture food_name only once
+      const cleanedName = data.food_name
+        .split("_")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      setFoodName(cleanedName);
+    }
+
+    // Clear foodName if the data node is deleted
+    if (foodName && !data) {
+      setFoodName(null);
+    }
+  }, [data, foodName]);
 
   return (
     <div className="min-h-screen grid grid-cols-6">
@@ -27,47 +38,26 @@ export default function Dashboard() {
           </div>
           <div className="hidden md:flex justify-end items-center mr-6 mt-6 text-gray-400">
             <Clock className="w-4 h-4 mr-1" />
-            Last updated: 10:47:46 PM
+            Last updated: {new Date().toLocaleTimeString()}
           </div>
-        </div>
-
-        {/* Food Analyzer Input */}
-        <div className="m-6 flex flex-col md:flex-row gap-4">
-          <input
-            type="text"
-            placeholder="Enter food name (e.g., Adobo)"
-            value={foodInput}
-            onChange={(e) => setFoodInput(e.target.value)}
-            className="border p-2 rounded w-full md:w-1/3 text-black"
-          />
-          <button
-            onClick={handleAnalyze}
-            className="bg-blue-600 text-white px-4 py-2 rounded w-full md:w-auto"
-          >
-            Analyze
-          </button>
         </div>
 
         {/* Main Content */}
         <div className="m-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Recipe Cards */}
           <div className="col-span-2">
             {foodName && <RecipeCards foodName={foodName} />}
           </div>
 
-          {/* Nutrition Facts */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-6">
             {foodName && (
-              <div className="sticky top-6 w-full max-w-sm">
-                <NutritionFacts foodName={foodName} />
-              </div>
+              <>
+                <PredictionDisplay foodName={foodName} data={data} />
+                <div className="sticky top-6 w-full max-w-sm">
+                  <NutritionFacts foodName={foodName} />
+                </div>
+              </>
             )}
           </div>
-        </div>
-
-        {/* Sensors */}
-        <div className="m-6">
-          <SensorGrid />
         </div>
       </div>
     </div>

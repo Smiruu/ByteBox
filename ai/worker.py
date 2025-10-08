@@ -70,16 +70,15 @@ def process_latest_entry():
         print(f"📥 Latest entry ({key}):", latest_data)
         predictions = predict_with_models(latest_data)
 
-        # Save predictions under /predictions/<same key>
-        result_ref = db.reference(f"predictions/{key}")
-        result_ref.set({
-            **predictions,
-            "raw_data": latest_data
-        })
+        # Update existing node with predictions only
+        result_ref = db.reference(f"{RASPI_PATH}{key}")
+        result_ref.update(predictions)
 
-        print(f"✅ Regression output saved for {key}: {predictions}")
+        print(f"✅ Predictions added for {key}: {predictions}")
     else:
         print("⚠️ No data found in raspi-data.")
+
+
 
 
 # --- STREAM HANDLER ---

@@ -88,6 +88,7 @@ Rules:
       }
 
       // 2️⃣ Store result in localStorage
+      console.log(trimmedInput, JSON.stringify(parsed) )
       localStorage.setItem(trimmedInput, JSON.stringify(parsed));
 
       setFoodData(parsed);
